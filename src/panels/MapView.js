@@ -8,6 +8,8 @@ import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
+import './MapView.css';
+
 const osName = platform();
 
 const MapView = props => (
@@ -17,10 +19,12 @@ const MapView = props => (
 				{osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
 			</HeaderButton>}
 		>
-		<YMaps>
-			<Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} />
-		</YMaps>	
 		</PanelHeader>
+		<YMaps class="MavView">
+			<Map defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
+				<Placemark geometry={[55.75, 37.57]} />
+			</Map>
+		</YMaps>	
 	</Panel>
 );
 

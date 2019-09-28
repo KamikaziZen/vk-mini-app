@@ -9,15 +9,16 @@ import Home from './panels/Home';
 const App = () => {
   const [activePanel, setActivePanel] = useState('home');
   const [fetchedUser, setUser] = useState(null);
-  const [location, setLocation] = useState([55.798, 49.106]);
+  const [location, setLocation] = useState({lat:30.798, lon:40.106});
   const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
   const [events, setEvents] = useState([]);
   
   const fetchLocation = () => {
+    console.log(location)
     connect
       .sendPromise('VKWebAppGetGeodata')
       .then(data => {
-        setLocation([data.lat, data.lon])
+        setLocation({lat:data.lat, lon:data.lon})
         console.log('location', location)
       })
       .catch(error => {
@@ -36,7 +37,6 @@ const App = () => {
     setPopout(null);
     async function fetchData() {
       const user = await connect.sendPromise('VKWebAppGetUserInfo');
-      const loc = await connect.send()
       setUser(user);
       setPopout(null);
     }

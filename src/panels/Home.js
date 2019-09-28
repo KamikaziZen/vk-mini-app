@@ -61,7 +61,11 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
                                              "params": params})
       .then(data => {
-        console.log('response', data)
+        console.log('group count:', data.response.count)
+        let curr_e = currentEvent.event
+        let active_m = currentEvent.activeModal
+        curr_e.count_cur = data.response.count
+        setCurrentEvent({event:curr_e, activeModal: active_m})
       })
       .catch(error => {
         console.log('error', error)

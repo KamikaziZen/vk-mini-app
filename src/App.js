@@ -137,6 +137,8 @@ const App = () => {
       }
     ]);
 
+    console.log('00:05')
+
   }, []);
 
   return (

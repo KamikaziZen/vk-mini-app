@@ -18,7 +18,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
 
   const joinGroup = (group_id) => {
     connect
-      .send("VKWebAppJoinGroup", {"group_id": group_id})
+      .sendPromise("VKWebAppJoinGroup", {"group_id": group_id})
       .then(data => {
         console.log('data', data)
       })
@@ -28,7 +28,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
   }
 
   const handleEventClick = (id, name, group_id) => {
-    setMessage('Вы записались на событие ' + name, '18:40')
+    setMessage('Вы записались на событие ' + name, '19:40')
     joinGroup(group_id)
   }
 

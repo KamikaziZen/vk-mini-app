@@ -36,15 +36,16 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
 
 
   const getGroupMembers = (group_id) => {
-    let endpoint = 'https://api.vk.com/method/groups.getMembers'
-    let payload = {
+    let params = {
       v: '5.101',
       access_token: token,
       group_id: group_id
     }
-    fetch(endpoint, {method:'POST', body:JSON.stringify(payload)})
+    connect
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
+                                      "params": params})
       .then(data => {
-        console.log('data', data)
+        console.log('response', data)
       })
       .catch(error => {
         console.log('error', error)

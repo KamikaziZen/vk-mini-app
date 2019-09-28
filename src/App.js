@@ -34,9 +34,9 @@ const App = () => {
     connect
       .sendPromise("VKWebAppGetAuthToken", {"app_id": 7149958, 
                                             "scope": "friends"})
-      .then((type, data)=> {
+      .then(data=> {
         console.log(type, data)
-        if (type == "VKWebAppAccessTokenReceived") {
+        if ("error_data" in data) {
           setToken(data.access_token)
           console.log('fetched token', token)
         } else {

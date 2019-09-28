@@ -1,4 +1,24 @@
-.map {
-  width: 100vw;
+.main {
   height: 100vh;
+  position: relative;
+}
+
+.map {
+  height: 100%;
+}
+
+.event-short-info-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+}
+
+.event-info-content {
+  background: linear-gradient(135deg, #f24973 0%, #3948e6 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 12px;
 }

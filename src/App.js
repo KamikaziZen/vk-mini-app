@@ -12,17 +12,40 @@ const App = () => {
   const [location, setLocation] = useState([55.798, 49.106]);
   const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
   const [events, setEvents] = useState([]);
+  const [token, setToken] = useState('');
   
   const fetchLocation = () => {
+    console.log(location)
     connect
       .sendPromise('VKWebAppGetGeodata')
       .then(data => {
-        setLocation([data.lat, data.lon])
+        if (data.available == 1) {
+          console.log('accessed user location!')
+          setLocation([data.lat, data.long])
+        }
         console.log('location', location)
       })
       .catch(error => {
         console.log('error', error)
       });
+  }
+
+  const getToken = () => {
+    connect
+      .sendPromise("VKWebAppGetAuthToken", {"app_id": 7149958, 
+                                            "scope": "friends,groups"})
+      .then(data=> {
+        console.log(data)
+        if ("error_data" in data) {
+          console.log('could not fetch token :(')
+        } else {
+          setToken(data.access_token)
+          console.log('fetched token', token)
+        }
+      })
+      .catch(error => {
+        console.log('error', error)
+      })
   }
 
   useEffect(() => {
@@ -36,12 +59,12 @@ const App = () => {
     setPopout(null);
     async function fetchData() {
       const user = await connect.sendPromise('VKWebAppGetUserInfo');
-      const loc = await connect.send()
       setUser(user);
       setPopout(null);
     }
     fetchData();
     fetchLocation();
+    // getToken();
 
     setEvents([
       {
@@ -112,13 +135,13 @@ const App = () => {
 
   }, []);
 
-  const go = e => {
-    setActivePanel(e.currentTarget.dataset.to);
-  };
+  // const go = e => {
+  //   setActivePanel(e.currentTarget.dataset.to);
+  // };
 
   return (
     <View activePanel={activePanel} popout={popout}>
-      <Home id='home' fetchedUser={fetchedUser} go={go} />
+      <Home id='home' location={location} fetchedUser={fetchedUser} events={events}/>
     </View>
   );
 }

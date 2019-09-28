@@ -32,8 +32,12 @@ const App = () => {
 
   const getToken = () => {
     connect
-      .sendPromise("VKWebAppGetAuthToken", {"app_id": 7149958, 
-                                            "scope": "friends,groups"})
+      .sendPromise("VKWebAppGetAuthToken",
+        {
+          "app_id": 7149958,
+          "scope": "friends,groups"
+        }
+      )
       .then(data=> {
         console.log(data)
         if ("error_data" in data) {
@@ -69,7 +73,7 @@ const App = () => {
     setEvents([
       {
         'coords': [55.766059, 49.304057],
-        'name': 'Помочь зооботсаду',
+        'title': 'Помочь зооботсаду',
         'start': '2019-10-05 09:00',
         'end': '2019-10-05 13:00',
         'aim': 'Содействие в поддержании благополучия экспонируемых животных',

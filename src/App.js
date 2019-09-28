@@ -7,7 +7,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 import Home from './panels/Home';
 
 const App = () => {
-  const [activePanel, setActivePanel] = useState('map-view');
+  const [activePanel, setActivePanel] = useState('home');
   const [fetchedUser, setUser] = useState(null);
   const [location, setLocation] = useState([55.798, 49.106]);
   const [popout, setPopout] = useState(<ScreenSpinner size='large' />);

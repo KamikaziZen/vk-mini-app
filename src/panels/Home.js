@@ -10,9 +10,9 @@ const Home = ({ id, location, fetchedUser }) => (
   <Panel id={id}>
     <PanelHeader>Карта событий</PanelHeader>
     <YMaps>
-      <Map className="map" defaultState={{center: location, zoom: 9}}>
+      <Map className="map" defaultState={{center: [location.lat, location.lon], zoom: 9}}>
         <Placemark
-          geometry={location}
+          geometry={[location.lat, location.lon]}
           options={{preset: 'islands#redCircleDotIcon'}}
         />
       </Map>
@@ -22,7 +22,10 @@ const Home = ({ id, location, fetchedUser }) => (
 
 Home.propTypes = {
   id: PropTypes.string.isRequired,
-  location: PropTypes.arrayOf(PropTypes.number).isRequired,
+  location: PropTypes.shape({
+    lat: PropTypes.number,
+    lon: PropTypes.number
+  }),
   fetchedUser: PropTypes.shape({
     photo_200: PropTypes.string,
     first_name: PropTypes.string,

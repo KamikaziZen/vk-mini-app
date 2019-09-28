@@ -121,7 +121,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
               parseFloat(location[0]),
               parseFloat(location[1])
             ],
-            zoom: 9}
+            zoom: 10}
           }
         >
           <Placemark

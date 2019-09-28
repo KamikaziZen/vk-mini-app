@@ -75,7 +75,6 @@ const Home = ({ id, location, fetchedUser, events }) => {
         </Map>
       </YMaps>
       <Modal
-        id='modal-1'
         title={currentEvent.title}
         group_id={currentEvent.group_id}
         activeModal={currentEvent.activeModal}

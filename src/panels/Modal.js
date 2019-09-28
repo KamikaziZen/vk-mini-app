@@ -55,7 +55,7 @@ class Modal extends React.Component {
   render() {
     return (
       <ModalRoot
-        id={this.props.id}
+        id='modal-1'
         activeModal={this.state.activeModal}
       >
         <ModalPage
@@ -104,7 +104,6 @@ class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-  id: PropTypes.string.isRequired,
   title: PropTypes.string,
   group_id: PropTypes.string
 };

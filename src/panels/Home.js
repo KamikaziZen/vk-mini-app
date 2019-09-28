@@ -13,9 +13,11 @@ const Home = ({ id, location, fetchedUser }) => (
   <Panel id={id}>
     <PanelHeader>Карта событий</PanelHeader>
     <YMaps>
-      <Map className="map" defaultState={{center: location, zoom: 9}}>
+      <Map className="map" defaultState={{center: [parseFloat(location[0]),
+                                                   parseFloat(location[1])], 
+                                          zoom: 9}}>
         <Placemark
-          geometry={location}
+          geometry={[parseFloat(location[0]), parseFloat(location[1])]}
           options={{preset: 'islands#redCircleDotIcon'}}
         />
       </Map>
@@ -36,7 +38,7 @@ const Home = ({ id, location, fetchedUser }) => (
               'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
             ]}
             style={{ color: "#fff" }}
-          >{location}</UsersStack>
+          >{parseFloat(location[0])} - {parseFloat(location[1])}</UsersStack>
         </div>
       </Div>
     </YMaps>

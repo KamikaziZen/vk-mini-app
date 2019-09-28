@@ -37,8 +37,18 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
 
   const getGroupMembers = (group_id) => {
     let endpoint = 'https://api.vk.com/method/groups.getMembers'
-    // ?v=5.101&group_id=' + group_id + '&access_token=' + token)
-    // fetch(endpoint, {})
+    let payload = {
+      v: '5.101',
+      access_token: token,
+      group_id: group_id
+    }
+    fetch(endpoint, {method:'POST', body:JSON.stringify(payload)})
+      .then(data => {
+        console.log('data', data)
+      })
+      .catch(error => {
+        console.log('error', error)
+      });
   }
 
   const handleEventClick = (title, group_id) => {

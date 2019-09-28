@@ -45,7 +45,7 @@ class Modal extends React.Component {
     }
 
     this.setState({
-      activeModal,
+      // activeModal,
       modalHistory
     });
   };
@@ -63,7 +63,7 @@ class Modal extends React.Component {
               left={IS_PLATFORM_ANDROID && <HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
               right={IS_PLATFORM_IOS && <HeaderButton onClick={this.modalBack}><Icon24Dismiss /></HeaderButton>}
             >
-              {this.props.title}
+              {this.props.event.title}
             </ModalPageHeader>
           }
           onClose={this.modalBack}
@@ -71,34 +71,33 @@ class Modal extends React.Component {
         <List>
           <Cell>
             <InfoRow title="Когда?">
-              12 января 13:42
+              {this.props.event.start} - {this.props.event.end}
+            </InfoRow>
+          </Cell>
+          <Cell>
+            <InfoRow title="Что там делать?">
+              {this.props.event.aim}
             </InfoRow>
           </Cell>
           <Cell>
             <InfoRow title="Чат группы">
-              { this.props.group_id }
+              { this.props.event.group_id }
             </InfoRow>
           </Cell>
-          <UsersStack
-            photos={[
-              'https://sun9-19.userapi.com/c851232/v851232757/fb949/4rDdDHqGglQ.jpg?ava=1',
-              'https://sun9-3.userapi.com/c851536/v851536176/a9b1d/xdPOltpVQRI.jpg?ava=1',
-              'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
-            ]}
-            style={{ color: "#fff" }}
-          >
-            Эти товарищи тоже идут!
-          </UsersStack>
+          <Cell>
+            <UsersStack
+              photos={[
+                'https://sun9-1.userapi.com/c850624/v850624456/9f63e/c2_IbBit7I8.jpg?ava=1',
+                'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
+              ]}
+              size="m"
+            >Настя и Jean пойдут на это мероприятие</UsersStack>
+          </Cell>
         </List>
       </ModalPage>
     </ModalRoot>
     );
   }
 }
-
-Modal.propTypes = {
-  title: PropTypes.string,
-  group_id: PropTypes.string
-};
 
 export default Modal;

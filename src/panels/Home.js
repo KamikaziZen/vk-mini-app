@@ -14,11 +14,27 @@ import './Home.css';
 
 const Home = ({ id, location, fetchedUser, events }) => {
 
+  const emptyEvent = {
+    'coords': [1, 1],
+    'title': 'Пусто',
+    'organizer': 'Пусто',
+    'start': 'Пусто',
+    'end': 'Пусто',
+    'aim': 'Пусто',
+    'description': 'Пусто',
+    'requirements': [],
+    'icon_type': 'islands#blueZooIcon',
+    'reward': '',
+    'photo': 'botsad.svg',
+    'group_id': '1',
+    'count_cur': 1,
+    'count_end': 1
+  }
+
   const [token, setToken] = useState('');
   const [currentEvent, setCurrentEvent] = useState(
     {
-      title: null,
-      group_id: null,
+      event: emptyEvent,
       activeModal: null
     }
   );
@@ -60,13 +76,12 @@ const Home = ({ id, location, fetchedUser, events }) => {
       })
   }
 
-  const handleEventClick = (title, group_id) => {
+  const handleEventClick = (event) => {
     // joinGroup(group_id)
     console.log('clicked')
     setCurrentEvent(
       {
-        title: title,
-        group_id: group_id,
+        event: event,
         activeModal: 'modal-page-1'
       }
     )
@@ -77,15 +92,15 @@ const Home = ({ id, location, fetchedUser, events }) => {
     <Placemark
       key={'event-' + idx}
       geometry={e.coords}
-      onClick={() => handleEventClick(e.title, e.group_id)}
+      options={{preset: e.icon_type}}
+      onClick={() => handleEventClick(e)}
     />
   );
 
-  const onCloseModale = () => {
+  const onCloseModal = () => {
     setCurrentEvent(
       {
-        title: null,
-        group_id: null,
+        event: emptyEvent,
         activeModal: null
       }
     )
@@ -108,30 +123,15 @@ const Home = ({ id, location, fetchedUser, events }) => {
             options={{preset: 'islands#redCircleDotIcon'}}
           />
           {listEvents}
-
         </Map>
       </YMaps>
       <Modal
-        title={currentEvent.title}
-        group_id={currentEvent.group_id}
+        event={currentEvent.event}
         activeModal={currentEvent.activeModal}
-        onClose={onCloseModale}
+        onClose={onCloseModal}
       />
     </div>
   );
 }
-
-Home.propTypes = {
-  id: PropTypes.string.isRequired,
-  location: PropTypes.array.isRequired,
-  fetchedUser: PropTypes.shape({
-    photo_200: PropTypes.string,
-    first_name: PropTypes.string,
-    last_name: PropTypes.string,
-    city: PropTypes.shape({
-      title: PropTypes.string,
-    }),
-  }),
-};
 
 export default Home;

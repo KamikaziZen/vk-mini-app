@@ -90,7 +90,7 @@ const Home = ({ id, location, fetchedUser, token }) => (
             'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
           ]}
           style={{ color: "#fff" }}
-        >{token} - 15:54</UsersStack>
+        >{token} - 17:15</UsersStack>
       </div>
     </Div> */}
   </div>

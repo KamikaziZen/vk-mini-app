@@ -30,15 +30,22 @@ const App = () => {
       });
   }
 
+  const joinGroup = (group_id) => {
+    connect
+    .send("VKWebAppJoinGroup", {"group_id": group_id});
+  }
+
   const getToken = () => {
     connect
-      .sendPromise("VKWebAppGetAuthToken", {"app_id": 7149958, "scope": "friends,status"})
-      .then((type, data)=> {
-        if (type == "VKWebAppAccessTokenReceived") {
+      .sendPromise("VKWebAppGetAuthToken", {"app_id": 7149958, 
+                                            "scope": "friends,groups"})
+      .then(data=> {
+        console.log(data)
+        if ("error_data" in data) {
+          console.log('could not fetch token :(')
+        } else {
           setToken(data.access_token)
           console.log('fetched token', token)
-        } else {
-          console.log('could not fetch token :(')
         }
       })
       .catch(error => {
@@ -66,9 +73,17 @@ const App = () => {
 
     setEvents([
       {
-        'coords': [55.6105863, 49.2864581],
-        'name': 'Мероприятие 1',
-        'description': 'Уехать в Москву'
+        'coords': [55.766059, 49.304057],
+        'name': 'Помочь зооботсаду',
+        'start': '2019-10-05 09:00',
+        'end': '2019-10-05 13:00',
+        'aim': 'Содействие в поддержании благополучия экспонируемых животных',
+        'description': 'Необходима помощь во время сезонных работ, помощь посетителям в ориентировании на территории, консультирование',
+        'requirements': ['Хорошо знать территорию зооботсада', 'Готовность выполнять любую из перечисленных задач'],
+        'type': 'Zoo',
+        'reward': 'Бесплатное посещение экскурсий, а также памятные сувениры',
+        'photo': 'botsad.svg',
+        'group_id': '187013907'
       }
     ]);
 

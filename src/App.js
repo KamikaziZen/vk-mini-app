@@ -9,7 +9,8 @@ import MapView from './panels/MapView';
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState('map-view');
-	const [fetchedUser, setUser] = useState(null);
+  const [fetchedUser, setUser] = useState(null);
+  const [location, setLocation] = useState('55.798,49.106');
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
 	useEffect(() => {

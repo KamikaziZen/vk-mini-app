@@ -115,12 +115,12 @@ const App = () => {
         'icon_type': 'islands#blueStarIcon',
         'reward': 'Благодарность',
         'photo': 'cp.svg',
-        'group_id': 'None',
+        'group_id': '187024041',
         'count_cur': 3250,
         'count_end': 3300
       },
       {
-        'coords': [55.7895988, 49.1014364],
+        'coords': [55.791230, 49.102772],
         'title': 'Отпраздновать победу',
         'organizer': 'Фонд побед',
         'start': '2019-09-29 21:00',
@@ -131,7 +131,7 @@ const App = () => {
         'icon_type': 'islands#blueFoodIcon',
         'reward': 'Вы перестанете чувствовать усталость',
         'photo': 'bar.svg',
-        'group_id': 'None',
+        'group_id': '187028879',
         'count_cur': 3,
         'count_end': 100
       }

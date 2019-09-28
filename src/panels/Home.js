@@ -12,12 +12,40 @@ import './Home.css';
 const Home = ({ id, location, fetchedUser }) => (
   <div id={id} className="main">
     <YMaps>
-      <Map className="map" defaultState={{center: location, zoom: 9}}>
+      <Map className="map"
+        defaultState={
+          {center: [
+            parseFloat(location[0]),
+            parseFloat(location[1])
+          ],
+          zoom: 9}
+        }
+      >
         <Placemark
-          geometry={location}
+          geometry={[parseFloat(location[0]), parseFloat(location[1])]}
           options={{preset: 'islands#redCircleDotIcon'}}
         />
       </Map>
+      <Div className="event-short-info">
+        <div style={{
+          backgroundImage: 'linear-gradient(135deg, #f24973 0%, #3948e6 100%)',
+          height: 200,
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          paddingBottom: '6px',
+          borderRadius: 12
+        }}>
+          <UsersStack
+            photos={[
+              'https://sun9-19.userapi.com/c851232/v851232757/fb949/4rDdDHqGglQ.jpg?ava=1',
+              'https://sun9-3.userapi.com/c851536/v851536176/a9b1d/xdPOltpVQRI.jpg?ava=1',
+              'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
+            ]}
+            style={{ color: "#fff" }}
+          >{parseFloat(location[0])} - {parseFloat(location[1])} - 15:17</UsersStack>
+        </div>
+      </Div>
     </YMaps>
     <Div className="event-short-info">
       <div style={{

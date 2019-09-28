@@ -31,7 +31,6 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
     'count_end': 1
   }
 
-  const [token, setToken] = useState('');
   const [currentEvent, setCurrentEvent] = useState(
     {
       event: emptyEvent,
@@ -71,7 +70,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
 
   const handleEventClick = (event) => {
     // joinGroup(group_id)
-    getGroupMembers(group_id)
+    getGroupMembers(event.group_id)
     console.log('clicked')
     setCurrentEvent(
       {

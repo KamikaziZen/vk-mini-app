@@ -37,15 +37,17 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       activeModal: null
     }
   );
+  const [groupCount, setGroupCount] = useState(0)
 
-  const joinGroup = (group_id) => {
+
+  const joinGroup = () => {
     connect
-      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(group_id)})
+      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(currentEvent.event.group_id)})
       .then(data => {
         console.log('data', data)
       })
       .catch(error => {
-        console.log('error', error)
+        console.log('error IN JOIN GROUP', error)
       });
   }
 
@@ -57,18 +59,16 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
     }
     connect
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
-                                             "params": params})
+                                            "params": params})
       .then(data => {
         console.log('group count:', data.response.count)
-        let curr_e = currentEvent.event
-        let active_m = currentEvent.activeModal
-        curr_e.count_cur = data.response.count
-        setCurrentEvent({event:curr_e, activeModal: active_m})
+        setGroupCount(data.response.count)
       })
       .catch(error => {
-        console.log('error', error)
+        console.log('error in get group members', error)
       });
   }
+
 
   const handleEventClick = (event) => {
     // joinGroup(group_id)
@@ -80,7 +80,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         activeModal: 'modal-page-1'
       }
     )
-    console.log(currentEvent)
+    console.log('event:', currentEvent)
   }
 
   const listEvents = events.map((e, idx) =>
@@ -96,7 +96,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
     setCurrentEvent(
       {
         event: emptyEvent,
-        activeModal: null
+        activeModal: null,
       }
     )
   }
@@ -124,6 +124,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         event={currentEvent.event}
         activeModal={currentEvent.activeModal}
         onClose={onCloseModal}
+        groupCount={groupCount}
+        onJoin={joinGroup}
       />
     </div>
   );

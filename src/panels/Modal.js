@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import connect from '@vkontakte/vk-connect';
 import PropTypes from 'prop-types';
 
 import {
@@ -9,10 +10,10 @@ import {
   HeaderButton,
   List,
   Cell,
-  InfoRow,
   Div,
   Button,
   Progress,
+  InfoRow,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
@@ -27,9 +28,10 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // activeModal: null,
+      group_count: 0,
       modalHistory: []
     };
+    console.log('props:', this.props)
     this.modalBack = () => {
       this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
       console.log('closing!')
@@ -86,7 +88,7 @@ class Modal extends React.Component {
           </Cell>
           <Cell>
             <Div>
-              <Button size="xl">Готов поучаствовать!</Button>
+              <Button size="xl" onClick={this.props.onJoin}>Готов помочь!</Button>
             </Div>
           </Cell>
           <Cell>
@@ -96,7 +98,7 @@ class Modal extends React.Component {
                 'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
               ]}
               size="m"
-            >{this.props.event.count_cur} пойдут</UsersStack>
+            >{this.props.groupCount} </UsersStack>
           </Cell>
           <Cell>
             <InfoRow title={'Набрано участников: ' + this.props.event.count_cur + ' из ' + this.props.event.count_end}>

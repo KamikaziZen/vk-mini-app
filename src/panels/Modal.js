@@ -14,6 +14,7 @@ import {
   Button,
   Progress,
   InfoRow,
+  Avatar,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
@@ -108,9 +109,14 @@ class Modal extends React.Component {
               />
             </InfoRow>
           </Cell>
-          <Cell>
-            <InfoRow title="Что там делать?">
-              {this.props.event.aim}
+          {/* <Cell>
+            <InfoRow title="Нужные навыки">
+              {this.props.event.requirements}
+            </InfoRow>
+          </Cell> */}
+          <Cell before={<Avatar src={'../img/' + this.props.event.photo} />}>
+            <InfoRow title="Организатор">
+              {this.props.event.organizer}
             </InfoRow>
           </Cell>
         </List>

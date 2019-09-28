@@ -10,6 +10,8 @@ import {
   List,
   Cell,
   InfoRow,
+  Div,
+  Button,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
@@ -80,9 +82,9 @@ class Modal extends React.Component {
             </InfoRow>
           </Cell>
           <Cell>
-            <InfoRow title="Чат группы">
-              { this.props.event.group_id }
-            </InfoRow>
+            <Div>
+              <Button size="xl">Готов поучаствовать!</Button>
+            </Div>
           </Cell>
           <Cell>
             <UsersStack

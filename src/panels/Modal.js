@@ -32,28 +32,26 @@ class Modal extends React.Component {
       console.log('closing!')
       this.props.onClose()
     };
+  }
 
-    this.getGroupMembers = (group_id) => {
-      let params = {
-        v: '5.101',
-        access_token: this.props.token,
-        group_id: parseInt(group_id)
-      }
-      connect
-        .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
-                                               "params": params})
-        .then(data => {
-          console.log('group count:', data.response.count)
-          this.setState({group_count: data.response.count})
-          console.log('done state')
-        })
-        .catch(error => {
-          console.log('error', error)
-        });
-    };
-
-    console.log('fetching group')
-    this.getGroupMembers(props.event.group_id);
+  componentDidMount() {
+    console.log('fetching groups!!!')
+    let params = {
+      v: '5.101',
+      access_token: this.props.token,
+      group_id: parseInt(this.props.event.group_id)
+    }
+    connect
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
+                                             "params": params})
+      .then(data => {
+        console.log('group count:', data.response.count)
+        this.setState({group_count: data.response.count})
+        console.log('done state')
+      })
+      .catch(error => {
+        console.log('error in get group members', error)
+      });
   }
 
   setActiveModal(activeModal) {

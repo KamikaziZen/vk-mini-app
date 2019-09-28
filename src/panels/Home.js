@@ -46,7 +46,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         console.log('data', data)
       })
       .catch(error => {
-        console.log('error', error)
+        console.log('error IN JOIN GROUP', error)
       });
   }
 

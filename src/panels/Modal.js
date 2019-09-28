@@ -45,13 +45,14 @@ class Modal extends React.Component {
         .then(data => {
           console.log('group count:', data.response.count)
           this.setState({group_count: data.response.count})
+          console.log('done state')
         })
         .catch(error => {
           console.log('error', error)
         });
     };
 
-    console.log('getching group')
+    console.log('fetching group')
     this.getGroupMembers(props.event.group_id);
   }
 

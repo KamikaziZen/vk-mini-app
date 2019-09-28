@@ -18,11 +18,17 @@ const Home = ({ id, location, fetchedUser, events }) => {
 
   const joinGroup = (group_id) => {
     connect
-      .send("VKWebAppJoinGroup", {"group_id": group_id});
+      .send("VKWebAppJoinGroup", {"group_id": group_id})
+      .then(data => {
+        console.log('data', data)
+      })
+      .catch(error => {
+        console.log('error', error)
+      });
   }
 
-  const handleEventClick = (name, group_id) => {
-    setMessage('Вы записались на событие ' + name)
+  const handleEventClick = (id, name, group_id) => {
+    setMessage('Вы записались на событие ' + name, '18:40')
     joinGroup(group_id)
   }
 
@@ -30,7 +36,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
     <Placemark
       key={'event-' + e.id}
       geometry={e.coords}
-      onClick={() => handleEventClick(e.name, e.group_id)}
+      onClick={() => handleEventClick(e.id, e.name, e.group_id)}
     />
   );
 

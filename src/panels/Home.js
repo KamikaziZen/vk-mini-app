@@ -39,11 +39,11 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
     let params = {
       v: '5.101',
       access_token: token,
-      group_id: group_id
+      group_id: parseInt(group_id)
     }
     connect
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
-                                      "params": params})
+                                             "params": params})
       .then(data => {
         console.log('response', data)
       })

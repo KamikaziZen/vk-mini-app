@@ -44,7 +44,7 @@ const App = () => {
           console.log('could not fetch token :(')
         } else {
           setToken(data.access_token)
-          console.log('fetched token', token)
+          console.log('fetched token!')
         }
       })
       .catch(error => {

@@ -20,8 +20,8 @@ const MapView = props => (
 			</HeaderButton>}
 		>
 		</PanelHeader>
-		<YMaps class="MavView">
-			<Map defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
+		<YMaps>
+			<Map className="mapview" defaultState={{ center: [55.75, 37.57], zoom: 9 }}>
 				<Placemark geometry={[55.75, 37.57]} />
 			</Map>
 		</YMaps>	

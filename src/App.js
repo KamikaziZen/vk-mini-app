@@ -10,7 +10,8 @@ const App = () => {
   const [activePanel, setActivePanel] = useState('home');
   const [fetchedUser, setUser] = useState(null);
   const [location, setLocation] = useState([55.798, 49.106]);
-  const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
+  const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+  const [events, setEvents] = useState([]);
   
   const fetchLocation = () => {
     connect
@@ -41,6 +42,14 @@ const App = () => {
     }
     fetchData();
     fetchLocation();
+
+    setEvents([
+      {
+        'coords': [55.6105863, 49.2864581],
+        'name': 'Мероприятие 1',
+        'description': 'Уехать в Москву'
+      }
+    ]);
 
   }, []);
 

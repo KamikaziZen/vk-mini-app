@@ -37,11 +37,11 @@ class Modal extends React.Component {
     this.getGroupMembers(this.props.event.group_id)
   }
 
-  getGroupMembers (group_id) {
+  getGroupMembers () {
     let params = {
       v: '5.101',
-      access_token: token,
-      group_id: parseInt(group_id)
+      access_token: this.props.token,
+      group_id: parseInt(this.props.event.group_id)
     }
     connect
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
@@ -51,6 +51,17 @@ class Modal extends React.Component {
         this.setState({
           group_count: data.response.count
         });
+      })
+      .catch(error => {
+        console.log('error', error)
+      });
+  }
+
+  joinGroup () {
+    connect
+      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(this.props.event.group_id)})
+      .then(data => {
+        console.log('data', data)
       })
       .catch(error => {
         console.log('error', error)
@@ -106,7 +117,7 @@ class Modal extends React.Component {
           </Cell>
           <Cell>
             <Div>
-              <Button size="xl">Готов поучаствовать!</Button>
+              <Button size="xl" onClick={this.joinGroup}>Готов поучаствовать!</Button>
             </Div>
           </Cell>
           <Cell>

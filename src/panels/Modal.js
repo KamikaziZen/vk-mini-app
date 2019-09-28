@@ -22,11 +22,13 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeModal: null,
+      // activeModal: null,
       modalHistory: []
     };
     this.modalBack = () => {
       this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
+      console.log('closing!')
+      this.props.onClose()
     };
   }
 
@@ -52,7 +54,7 @@ class Modal extends React.Component {
     return (
       <ModalRoot
         id='modal-1'
-        activeModal={this.state.activeModal}
+        activeModal={this.props.activeModal}
       >
         <ModalPage
           id='modal-page-1'

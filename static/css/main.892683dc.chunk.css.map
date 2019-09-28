@@ -1,0 +1,1 @@
+{"version":3,"sources":["Home.css"],"names":[],"mappings":"AAAA,KACE,WAAY,CACZ,YACF,CAEA,kBACE,iBAAkB,CAClB,QACF","file":"main.892683dc.chunk.css","sourcesContent":[".map {\n  width: 100vw;\n  height: 100vh;\n}\n\n.event-short-info {\n  position: absolute;\n  bottom: 0;\n}"]}

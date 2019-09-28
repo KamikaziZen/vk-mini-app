@@ -54,18 +54,10 @@ const Home = ({ id, location, fetchedUser, events }) => {
 
         </Map>
       </YMaps>
-      <Div className="event-short-info-wrapper">
-        <div className="event-info-content">
-          <UsersStack
-            photos={[
-              'https://sun9-19.userapi.com/c851232/v851232757/fb949/4rDdDHqGglQ.jpg?ava=1',
-              'https://sun9-3.userapi.com/c851536/v851536176/a9b1d/xdPOltpVQRI.jpg?ava=1',
-              'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
-            ]}
-            style={{ color: "#fff" }}
-          >{message} - 18:00</UsersStack>
-        </div>
-      </Div>
+      <Modal
+        id='modal-1'
+        title='Налить кофию.'
+      />
     </div>
   );
 }

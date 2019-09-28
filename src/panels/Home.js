@@ -62,7 +62,12 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
                                             "params": params})
       .then(data => {
         console.log('group count:', data.response.count)
-        console.log(fetchedUser)
+        console.log('items', data.response.items)
+        if (fetchedUser.id in data.response.items) {
+          console.log('user in group')
+        } else {
+          console.log('USER IS NOT IN GROUP')
+        }
         setGroupCount(data.response.count)
       })
       .catch(error => {

@@ -12,17 +12,13 @@ import {
   Cell,
   Div,
   Button,
-  Progress,
   InfoRow,
-  Avatar,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
 
 import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
 import Icon24Dismiss from '@vkontakte/icons/dist/24/dismiss';
-
-import './Modal.css';
 
 class Modal extends React.Component {
 
@@ -59,7 +55,7 @@ class Modal extends React.Component {
   };
 
   joinAndClose() {
-    this.props.onClose();
+    this.modalBack();
     this.props.onJoin()
   }
 
@@ -87,7 +83,7 @@ class Modal extends React.Component {
               {this.props.event.start} - {this.props.event.end}
             </InfoRow>
           </Cell>
-          <Cell multiline>
+          <Cell>
             <InfoRow title="Что там делать?">
               {this.props.event.aim}
             </InfoRow>
@@ -97,7 +93,7 @@ class Modal extends React.Component {
               {
                 this.props.inGroup
                 ? <Button size="xl" level="secondary" disabled>Уже участвую!</Button>
-                : <Button size="xl" onClick={this.props.onJoin}>Готов помочь!</Button>
+                : <Button size="xl" onClick={this.props.joinAndClose}>Готов помочь!</Button>
               }
             </Div>
           </Cell>
@@ -109,24 +105,6 @@ class Modal extends React.Component {
               ]}
               size="m"
             >{this.props.groupCount} </UsersStack>
-          </Cell>
-          <Cell>
-            <InfoRow title={'Набрано участников: ' + this.props.event.count_cur + ' из ' + this.props.event.count_end}>
-              <Progress 
-                value={Math.floor(this.props.event.count_cur * 100 / this.props.event.count_end)}
-                className="progress-bar"
-              />
-            </InfoRow>
-          </Cell>
-          {/* <Cell>
-            <InfoRow title="Нужные навыки">
-              {this.props.event.requirements}
-            </InfoRow>
-          </Cell> */}
-          <Cell before={<Avatar src={'../img/' + this.props.event.photo} />}>
-            <InfoRow title="Организатор">
-              {this.props.event.organizer}
-            </InfoRow>
           </Cell>
         </List>
       </ModalPage>

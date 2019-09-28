@@ -44,7 +44,7 @@ class Modal extends React.Component {
                                                "params": params})
         .then(data => {
           console.log('group count:', data.response.count)
-          setState({group_count: data.response.count})
+          this.setState({group_count: data.response.count})
         })
         .catch(error => {
           console.log('error', error)
@@ -114,7 +114,7 @@ class Modal extends React.Component {
                 'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
               ]}
               size="m"
-            >{this.props.group_count} </UsersStack>
+            >{this.state.group_count} </UsersStack>
           </Cell>
         </List>
       </ModalPage>

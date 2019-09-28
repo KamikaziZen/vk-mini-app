@@ -38,6 +38,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
     }
   );
   const [groupCount, setGroupCount] = useState(0)
+  const [inGroup, setInGroup] = useState(false)
 
 
   const joinGroup = () => {
@@ -63,8 +64,9 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       .then(data => {
         console.log('group count:', data.response.count)
         console.log('items', data.response.items)
-        if (fetchedUser.id in data.response.items) {
+        if (data.response.items.includes(fetchedUser.id)) {
           console.log('user in group')
+          setInGroup(true)
         } else {
           console.log('USER IS NOT IN GROUP')
         }
@@ -132,6 +134,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         onClose={onCloseModal}
         groupCount={groupCount}
         onJoin={joinGroup}
+        inGroup={inGroup}
       />
     </div>
   );

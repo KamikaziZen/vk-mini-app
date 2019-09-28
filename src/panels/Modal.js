@@ -22,14 +22,36 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // activeModal: null,
+      group_count: 0,
       modalHistory: []
     };
+    console.log('props:', this.props)
     this.modalBack = () => {
       this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
       console.log('closing!')
       this.props.onClose()
     };
+
+    this.getGroupMembers = (group_id) => {
+      let params = {
+        v: '5.101',
+        access_token: this.props.token,
+        group_id: parseInt(group_id)
+      }
+      connect
+        .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
+                                               "params": params})
+        .then(data => {
+          console.log('group count:', data.response.count)
+          setState({group_count: data.response.count})
+        })
+        .catch(error => {
+          console.log('error', error)
+        });
+    };
+
+    console.log('getching group')
+    this.getGroupMembers(props.event.group_id);
   }
 
   setActiveModal(activeModal) {

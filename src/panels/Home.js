@@ -51,27 +51,9 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   }
 
 
-  const getGroupMembers = (group_id) => {
-    let params = {
-      v: '5.101',
-      access_token: token,
-      group_id: parseInt(group_id)
-    }
-    connect
-      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
-                                             "params": params})
-      .then(data => {
-        console.log('group count:', data.response.count)
-        setCurrentEvent({group_count: data.response.count})
-      })
-      .catch(error => {
-        console.log('error', error)
-      });
-  }
-
   const handleEventClick = (event) => {
     // joinGroup(group_id)
-    getGroupMembers(event.group_id)
+    // getGroupMembers(event.group_id)
     console.log('clicked')
     setCurrentEvent(
       {
@@ -124,6 +106,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         event={currentEvent.event}
         activeModal={currentEvent.activeModal}
         onClose={onCloseModal}
+        token={token}
       />
     </div>
   );

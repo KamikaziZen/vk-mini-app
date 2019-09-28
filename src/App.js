@@ -44,7 +44,7 @@ const App = () => {
           console.log('could not fetch token :(')
         } else {
           setToken(data.access_token)
-          console.log('fetched token', token)
+          console.log('fetched token!')
         }
       })
       .catch(error => {
@@ -68,7 +68,7 @@ const App = () => {
     }
     fetchData();
     fetchLocation();
-    // getToken();
+    getToken();
 
     setEvents([
       {
@@ -89,23 +89,23 @@ const App = () => {
       },
       {
         'coords': [55.821002, 49.1586594],
-        'title': 'Помощь в проведении футбольного матча',
+        'title': 'Помочь с техникой',
         'organizer': 'Казань Арена',
         'start': '2019-10-06 10:00',
         'end': '2019-10-06 16:00',
         'aim': 'Успешное проведение спортивного мероприятия',
-        'description': 'Необходма помощь волонтеров в организации обеспечения коммуникаций и телерадиовещания',
+        'description': 'Необходима помощь волонтеров в организации обеспечения коммуникаций и телерадиовещания',
         'requirements': ['Возраст от 18 лет', 'Опыт волонтерской работы на спортивных мероприятиях'],
         'icon_type': 'islands#blueRunIcon',
         'reward': 'Бесплатное посещение матча',
         'photo': 'kazan-arena.svg',
-        'group_id': 'None',
+        'group_id': '187023316',
         'count_cur': 27,
         'count_end': 100
       },
       {
         'coords': [55.6122512, 49.2959574],
-        'title': 'Прибрать за собой рабочее место',
+        'title': 'Прибрать за собой',
         'organizer': 'Цифровой Прорыв',
         'start': '2019-09-29 16:00',
         'end': '2019-09-29 21:00',
@@ -115,12 +115,12 @@ const App = () => {
         'icon_type': 'islands#blueStarIcon',
         'reward': 'Благодарность',
         'photo': 'cp.svg',
-        'group_id': 'None',
+        'group_id': '187024041',
         'count_cur': 3250,
         'count_end': 3300
       },
       {
-        'coords': [55.7895988, 49.1014364],
+        'coords': [55.791230, 49.102772],
         'title': 'Отпраздновать победу',
         'organizer': 'Фонд побед',
         'start': '2019-09-29 21:00',
@@ -131,7 +131,7 @@ const App = () => {
         'icon_type': 'islands#blueFoodIcon',
         'reward': 'Вы перестанете чувствовать усталость',
         'photo': 'bar.svg',
-        'group_id': 'None',
+        'group_id': '187028879',
         'count_cur': 3,
         'count_end': 100
       }
@@ -141,7 +141,11 @@ const App = () => {
 
   return (
     <View activePanel={activePanel} popout={popout}>
-      <Home id='home' location={location} fetchedUser={fetchedUser} events={events}/>
+      <Home id='home' 
+            location={location} 
+            fetchedUser={fetchedUser} 
+            events={events}
+            token={token}/>
     </View>
   );
 }

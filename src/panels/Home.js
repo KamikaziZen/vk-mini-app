@@ -12,7 +12,7 @@ import Modal from './Modal';
 
 import './Home.css';
 
-const Home = ({ id, location, fetchedUser, events }) => {
+const Home = ({ id, location, fetchedUser, events, token }) => {
 
   const emptyEvent = {
     'coords': [1, 1],
@@ -39,6 +39,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
     }
   );
 
+
   const joinGroup = (group_id) => {
     connect
       .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(group_id)})
@@ -50,34 +51,27 @@ const Home = ({ id, location, fetchedUser, events }) => {
       });
   }
 
-  // const getFriends = () => {
-    
-  // }
 
-  const getToken = () => {
+  const getGroupMembers = (group_id) => {
+    let params = {
+      v: '5.101',
+      access_token: token,
+      group_id: parseInt(group_id)
+    }
     connect
-      .sendPromise("VKWebAppGetAuthToken",
-        {
-          "app_id": 7149958,
-          "scope": "friends,groups"
-        }
-      )
-      .then(data=> {
-        console.log(data)
-        if ("error_data" in data) {
-          console.log('could not fetch token :(')
-        } else {
-          setToken(data.access_token)
-          console.log('fetched token', token)
-        }
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
+                                             "params": params})
+      .then(data => {
+        console.log('response', data)
       })
       .catch(error => {
         console.log('error', error)
-      })
+      });
   }
 
   const handleEventClick = (event) => {
     // joinGroup(group_id)
+    getGroupMembers(group_id)
     console.log('clicked')
     setCurrentEvent(
       {

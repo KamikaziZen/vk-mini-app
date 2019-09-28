@@ -62,6 +62,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
                                             "params": params})
       .then(data => {
         console.log('group count:', data.response.count)
+        console.log(fetchedUser)
         setGroupCount(data.response.count)
       })
       .catch(error => {

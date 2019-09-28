@@ -54,7 +54,6 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       key={'event-' + idx}
       geometry={e.coords}
       options={{preset: e.icon_type}}
-      token={token}
       onClick={() => handleEventClick(e)}
     />
   );
@@ -91,6 +90,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         event={currentEvent.event}
         activeModal={currentEvent.activeModal}
         onClose={onCloseModal}
+        token={token}
       />
     </div>
   );

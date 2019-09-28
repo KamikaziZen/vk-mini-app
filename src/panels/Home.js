@@ -37,23 +37,43 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       activeModal: null
     }
   );
+  const [groupCount, setGroupCount] = useState(0)
 
 
-  const joinGroup = (group_id) => {
+  // const joinGroup = (group_id) => {
+  //   connect
+  //     .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(group_id)})
+  //     .then(data => {
+  //       console.log('data', data)
+  //     })
+  //     .catch(error => {
+  //       console.log('error IN JOIN GROUP', error)
+  //     });
+  // }
+
+  const getGroupMembers = (group_id) => {
+    let params = {
+      v: '5.101',
+      access_token: this.props.token,
+      group_id: parseInt(this.props.event.group_id)
+    }
     connect
-      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(group_id)})
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
+                                            "params": params})
       .then(data => {
-        console.log('data', data)
+        console.log('group count:', data.response.count)
+        setGroupCount(data.response.count)
+        console.log('done group count', groupCount)
       })
       .catch(error => {
-        console.log('error IN JOIN GROUP', error)
+        console.log('error in get group members', error)
       });
   }
 
 
   const handleEventClick = (event) => {
     // joinGroup(group_id)
-    // getGroupMembers(event.group_id)
+    getGroupMembers(event.group_id)
     console.log('clicked')
     setCurrentEvent(
       {
@@ -78,7 +98,6 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       {
         event: emptyEvent,
         activeModal: null,
-        group_count: null
       }
     )
   }
@@ -106,7 +125,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         event={currentEvent.event}
         activeModal={currentEvent.activeModal}
         onClose={onCloseModal}
-        token={token}
+        groupCount={groupCount}
       />
     </div>
   );

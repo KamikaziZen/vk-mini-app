@@ -34,26 +34,6 @@ class Modal extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log('fetching groups!!!')
-    let params = {
-      v: '5.101',
-      access_token: this.props.token,
-      group_id: parseInt(this.props.event.group_id)
-    }
-    connect
-      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
-                                             "params": params})
-      .then(data => {
-        console.log('group count:', data.response.count)
-        this.setState({group_count: data.response.count})
-        console.log('done state')
-      })
-      .catch(error => {
-        console.log('error in get group members', error)
-      });
-  }
-
   setActiveModal(activeModal) {
     activeModal = activeModal || null;
     let modalHistory = this.state.modalHistory ? [...this.state.modalHistory] : [];
@@ -113,7 +93,7 @@ class Modal extends React.Component {
                 'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
               ]}
               size="m"
-            >{this.state.group_count} </UsersStack>
+            >{this.props.group_count} </UsersStack>
           </Cell>
         </List>
       </ModalPage>

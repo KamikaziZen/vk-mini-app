@@ -69,6 +69,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
           setInGroup(true)
         } else {
           console.log('USER IS NOT IN GROUP')
+          setInGroup(false)
         }
         setGroupCount(data.response.count)
       })
@@ -107,6 +108,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         activeModal: null,
       }
     )
+    setGroupCount(0)
+    setInGroup(false)
   }
 
   return (

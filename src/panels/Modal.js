@@ -54,6 +54,11 @@ class Modal extends React.Component {
     });
   };
 
+  joinAndClose() {
+    this.modalBack();
+    this.props.onJoin()
+  }
+
   render() {
     return (
       <ModalRoot

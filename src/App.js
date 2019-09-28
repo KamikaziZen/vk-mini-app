@@ -16,8 +16,8 @@ const App = () => {
     connect
       .sendPromise('VKWebAppGetGeodata')
       .then(data => {
-        console.log('latitude', data.lat);
         setLocation([data.lat, data.lon])
+        console.log('location', location)
       })
       .catch(error => {
         console.log('error', error)

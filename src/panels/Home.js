@@ -43,7 +43,7 @@ const Home = ({ id, location, fetchedUser }) => (
               'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
             ]}
             style={{ color: "#fff" }}
-          >{parseFloat(location[0])} - {parseFloat(location[1])} - 15:17</UsersStack>
+          >{parseFloat(location[0])} - {parseFloat(location[1])} - 15:26</UsersStack>
         </div>
       </Div>
     </YMaps>

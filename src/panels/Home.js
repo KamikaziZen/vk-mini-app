@@ -38,6 +38,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
     }
   );
   const [groupCount, setGroupCount] = useState(0)
+  const [inGroup, setInGroup] = useState(false)
 
 
   const joinGroup = () => {
@@ -62,6 +63,14 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
                                             "params": params})
       .then(data => {
         console.log('group count:', data.response.count)
+        console.log('items', data.response.items)
+        if (data.response.items.includes(fetchedUser.id)) {
+          console.log('user in group')
+          setInGroup(true)
+        } else {
+          console.log('USER IS NOT IN GROUP')
+          setInGroup(false)
+        }
         setGroupCount(data.response.count)
       })
       .catch(error => {
@@ -99,6 +108,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         activeModal: null,
       }
     )
+    setGroupCount(0)
+    setInGroup(false)
   }
 
   return (
@@ -126,6 +137,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         onClose={onCloseModal}
         groupCount={groupCount}
         onJoin={joinGroup}
+        inGroup={inGroup}
       />
     </div>
   );

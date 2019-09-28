@@ -14,7 +14,7 @@ import './Home.css';
 
 const Home = ({ id, location, fetchedUser, events }) => {
 
-  const [message, setMessage] = useState('ты ничего не нажал');
+  const [token, setToken] = useState('');
   const [currentEvent, setCurrentEvent] = useState(
     {
       title: null,
@@ -34,9 +34,35 @@ const Home = ({ id, location, fetchedUser, events }) => {
       });
   }
 
+  // const getFriends = () => {
+    
+  // }
+
+  const getToken = () => {
+    connect
+      .sendPromise("VKWebAppGetAuthToken",
+        {
+          "app_id": 7149958,
+          "scope": "friends,groups"
+        }
+      )
+      .then(data=> {
+        console.log(data)
+        if ("error_data" in data) {
+          console.log('could not fetch token :(')
+        } else {
+          setToken(data.access_token)
+          console.log('fetched token', token)
+        }
+      })
+      .catch(error => {
+        console.log('error', error)
+      })
+  }
+
   const handleEventClick = (title, group_id) => {
-    setMessage('Вы записались на событие ' + title, '18:40')
-    joinGroup(group_id)
+    // joinGroup(group_id)
+    console.log('clicked')
     setCurrentEvent(
       {
         title: title,
@@ -54,6 +80,16 @@ const Home = ({ id, location, fetchedUser, events }) => {
       onClick={() => handleEventClick(e.title, e.group_id)}
     />
   );
+
+  const onCloseModale = () => {
+    setCurrentEvent(
+      {
+        title: null,
+        group_id: null,
+        activeModal: null
+      }
+    )
+  }
 
   return (
     <div id={id} className="main">
@@ -78,6 +114,8 @@ const Home = ({ id, location, fetchedUser, events }) => {
       <Modal
         title={currentEvent.title}
         group_id={currentEvent.group_id}
+        activeModal={currentEvent.activeModal}
+        onClose={onCloseModale}
       />
     </div>
   );

@@ -37,10 +37,10 @@ const App = () => {
       .then(data=> {
         console.log(data)
         if ("error_data" in data) {
+          console.log('could not fetch token :(')
+        } else {
           setToken(data.access_token)
           console.log('fetched token', token)
-        } else {
-          console.log('could not fetch token :(')
         }
       })
       .catch(error => {

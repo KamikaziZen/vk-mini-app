@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import connect from '@vkontakte/vk-connect';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -11,8 +10,6 @@ import {
   List,
   Cell,
   InfoRow,
-  Div,
-  Button,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
@@ -25,7 +22,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      group_count: 0,
+      // activeModal: null,
       modalHistory: []
     };
     this.modalBack = () => {
@@ -33,40 +30,6 @@ class Modal extends React.Component {
       console.log('closing!')
       this.props.onClose()
     };
-
-    console.log('TOOOKEN', props.token)
-    this.getGroupMembers(props.event.group_id, props.token)
-  }
-
-  getGroupMembers (group_id, token) {
-    let params = {
-      v: '5.101',
-      access_token: token,
-      group_id: parseInt(group_id)
-    }
-    connect
-      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
-                                             "params": params})
-      .then(data => {
-        console.log('group count:', data.response.count)
-        this.setState({
-          group_count: data.response.count
-        });
-      })
-      .catch(error => {
-        console.log('error', error)
-      });
-  }
-
-  joinGroup () {
-    connect
-      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(this.props.event.group_id)})
-      .then(data => {
-        console.log('data', data)
-      })
-      .catch(error => {
-        console.log('error', error)
-      });
   }
 
   setActiveModal(activeModal) {
@@ -117,9 +80,9 @@ class Modal extends React.Component {
             </InfoRow>
           </Cell>
           <Cell>
-            <Div>
-              <Button size="xl" onClick={this.joinGroup}>Готов поучаствовать!</Button>
-            </Div>
+            <InfoRow title="Чат группы">
+              { this.props.event.group_id }
+            </InfoRow>
           </Cell>
           <Cell>
             <UsersStack
@@ -128,7 +91,7 @@ class Modal extends React.Component {
                 'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
               ]}
               size="m"
-            >{this.state.group_count} пойдут</UsersStack>
+            >{this.props.group_count} </UsersStack>
           </Cell>
         </List>
       </ModalPage>

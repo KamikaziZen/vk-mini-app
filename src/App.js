@@ -80,7 +80,7 @@ const App = () => {
 
   return (
     <View activePanel={activePanel} popout={popout}>
-      <Home id='home' location={location} fetchedUser={fetchedUser}/>
+      <Home id='home' location={location} fetchedUser={fetchedUser} token={token}/>
     </View>
   );
 }

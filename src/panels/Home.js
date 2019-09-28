@@ -18,7 +18,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
 
   const joinGroup = (group_id) => {
     connect
-      .sendPromise("VKWebAppJoinGroup", {"group_id": group_id})
+      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(group_id)})
       .then(data => {
         console.log('data', data)
       })

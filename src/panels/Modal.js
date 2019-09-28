@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import connect from '@vkontakte/vk-connect';
 import PropTypes from 'prop-types';
 
 import {

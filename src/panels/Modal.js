@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import connect from '@vkontakte/vk-connect';
 import PropTypes from 'prop-types';
 
 import {
@@ -24,7 +25,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // activeModal: null,
+      group_count: 0,
       modalHistory: []
     };
     this.modalBack = () => {
@@ -32,6 +33,28 @@ class Modal extends React.Component {
       console.log('closing!')
       this.props.onClose()
     };
+
+    this.getGroupMembers(this.props.event.group_id)
+  }
+
+  getGroupMembers (group_id) {
+    let params = {
+      v: '5.101',
+      access_token: token,
+      group_id: parseInt(group_id)
+    }
+    connect
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 
+                                             "params": params})
+      .then(data => {
+        console.log('group count:', data.response.count)
+        this.setState({
+          group_count: data.response.count
+        });
+      })
+      .catch(error => {
+        console.log('error', error)
+      });
   }
 
   setActiveModal(activeModal) {

@@ -57,6 +57,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
       <Modal
         id='modal-1'
         title='Налить кофию.'
+        group_id='123'
       />
     </div>
   );

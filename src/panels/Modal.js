@@ -34,8 +34,8 @@ class Modal extends React.Component {
       this.props.onClose()
     };
 
-    console.log(this.props.token)
-    this.getGroupMembers(this.props.event.group_id)
+    console.log(props.token)
+    this.getGroupMembers(props.event.group_id)
   }
 
   getGroupMembers () {

@@ -10,6 +10,8 @@ import {
   HeaderButton,
   List,
   Cell,
+  Div,
+  Button,
   InfoRow,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
@@ -82,9 +84,9 @@ class Modal extends React.Component {
             </InfoRow>
           </Cell>
           <Cell>
-            <InfoRow title="Чат группы">
-              { this.props.event.group_id }
-            </InfoRow>
+            <Div>
+              <Button size="xl" onClick={this.props.onJoin}>Готов помочь!</Button>
+            </Div>
           </Cell>
           <Cell>
             <UsersStack

@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import connect from '@vkontakte/vk-connect';
 import PropTypes from 'prop-types';
-import UsersStack from '@vkontakte/vkui/dist/components/UsersStack/UsersStack';
-import Div from '@vkontakte/vkui/dist/components/Div/Div';
 
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import {
+  UsersStack,
+  ModalRoot,
+  ModalPage,
+  ModalPageHeader,
+  HeaderButton,
+  List,
+  Cell,
+  InfoRow,
+  IS_PLATFORM_ANDROID,
+  IS_PLATFORM_IOS
+} from '@vkontakte/vkui';
+
+import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
+import Icon24Dismiss from '@vkontakte/icons/dist/24/dismiss';
+
+import {
+  YMaps,
+  Map,
+  Placemark
+} from 'react-yandex-maps';
 
 import './Home.css';
 
@@ -59,12 +77,36 @@ const Home = ({ id, location, fetchedUser, events }) => {
               'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
             ]}
             style={{ color: "#fff" }}
+<<<<<<< HEAD
           >{message} - 18:00</UsersStack>
         </div>
       </Div>
     </div>
   );
 }
+=======
+          >
+            {token} - 17:08
+          </UsersStack>
+        </List>
+      </ModalPage>
+    </ModalRoot>
+   
+    {/* <Div className="event-short-info-wrapper">
+      <div className="event-info-content">
+        <UsersStack
+          photos={[
+            'https://sun9-19.userapi.com/c851232/v851232757/fb949/4rDdDHqGglQ.jpg?ava=1',
+            'https://sun9-3.userapi.com/c851536/v851536176/a9b1d/xdPOltpVQRI.jpg?ava=1',
+            'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
+          ]}
+          style={{ color: "#fff" }}
+        >{token} - 17:15</UsersStack>
+      </div>
+    </Div> */}
+  </div>
+);
+>>>>>>> d9bfe01c5052dc3ac53f5a64158fb9d869474857
 
 Home.propTypes = {
   id: PropTypes.string.isRequired,

@@ -63,7 +63,6 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       .then(data => {
         console.log('group count:', data.response.count)
         setGroupCount(data.response.count)
-        console.log('done group count', groupCount)
       })
       .catch(error => {
         console.log('error in get group members', error)

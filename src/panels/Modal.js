@@ -93,7 +93,7 @@ class Modal extends React.Component {
                 'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
               ]}
               size="m"
-            >{this.props.group_count} </UsersStack>
+            >{this.props.groupCount} </UsersStack>
           </Cell>
         </List>
       </ModalPage>

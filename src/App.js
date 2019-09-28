@@ -30,11 +30,6 @@ const App = () => {
       });
   }
 
-  const joinGroup = (group_id) => {
-    connect
-    .send("VKWebAppJoinGroup", {"group_id": group_id});
-  }
-
   const getToken = () => {
     connect
       .sendPromise("VKWebAppGetAuthToken", {"app_id": 7149958, 
@@ -69,7 +64,7 @@ const App = () => {
     }
     fetchData();
     fetchLocation();
-    getToken();
+    // getToken();
 
     setEvents([
       {
@@ -89,13 +84,13 @@ const App = () => {
 
   }, []);
 
-  const go = e => {
-    setActivePanel(e.currentTarget.dataset.to);
-  };
+  // const go = e => {
+  //   setActivePanel(e.currentTarget.dataset.to);
+  // };
 
   return (
     <View activePanel={activePanel} popout={popout}>
-      <Home id='home' location={location} fetchedUser={fetchedUser} token={token}/>
+      <Home id='home' location={location} fetchedUser={fetchedUser} events={events}/>
     </View>
   );
 }

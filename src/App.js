@@ -10,7 +10,7 @@ const App = () => {
   const [activePanel, setActivePanel] = useState('home');
   const [fetchedUser, setUser] = useState(null);
   const [location, setLocation] = useState([55.798, 49.106]);
-  const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+  const [popout, setPopout] = useState(<ScreenSpinner size='large'/>);
   
   const fetchLocation = () => {
     connect
@@ -50,7 +50,7 @@ const App = () => {
 
   return (
     <View activePanel={activePanel} popout={popout}>
-      <Home id='home' fetchedUser={fetchedUser} go={go} />
+      <Home id='home' location={location} fetchedUser={fetchedUser}/>
     </View>
   );
 }

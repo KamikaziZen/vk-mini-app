@@ -9,11 +9,12 @@ import Home from './panels/Home';
 const App = () => {
   const [activePanel, setActivePanel] = useState('home');
   const [fetchedUser, setUser] = useState(null);
-  const [location, setLocation] = useState({lat:55.798, lon:49.106});
+  const [location, setLocation] = useState({lat:30.798, lon:40.106});
   const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
   const [events, setEvents] = useState([]);
   
   const fetchLocation = () => {
+    console.log(location)
     connect
       .sendPromise('VKWebAppGetGeodata')
       .then(data => {

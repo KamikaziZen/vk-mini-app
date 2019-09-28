@@ -15,10 +15,17 @@ import './Home.css';
 const Home = ({ id, location, fetchedUser, events }) => {
 
   const [message, setMessage] = useState('ты ничего не нажал');
+  const [currentEvent, setCurrentEvent] = useState(
+    {
+      title: null,
+      group_id: null,
+      activeModal: null
+    }
+  );
 
   const joinGroup = (group_id) => {
     connect
-      .send("VKWebAppJoinGroup", {"group_id": group_id})
+      .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(group_id)})
       .then(data => {
         console.log('data', data)
       })
@@ -27,16 +34,24 @@ const Home = ({ id, location, fetchedUser, events }) => {
       });
   }
 
-  const handleEventClick = (id, name, group_id) => {
-    setMessage('Вы записались на событие ' + name, '18:40')
+  const handleEventClick = (title, group_id) => {
+    setMessage('Вы записались на событие ' + title, '18:40')
     joinGroup(group_id)
+    setCurrentEvent(
+      {
+        title: title,
+        group_id: group_id,
+        activeModal: 'modal-page-1'
+      }
+    )
+    console.log(currentEvent)
   }
 
-  const listEvents = events.map((e) =>
+  const listEvents = events.map((e, idx) =>
     <Placemark
-      key={'event-' + e.id}
+      key={'event-' + idx}
       geometry={e.coords}
-      onClick={() => handleEventClick(e.id, e.name, e.group_id)}
+      onClick={() => handleEventClick(e.title, e.group_id)}
     />
   );
 
@@ -61,9 +76,8 @@ const Home = ({ id, location, fetchedUser, events }) => {
         </Map>
       </YMaps>
       <Modal
-        id='modal-1'
-        title='Налить кофию.'
-        group_id='123'
+        title={currentEvent.title}
+        group_id={currentEvent.group_id}
       />
     </div>
   );

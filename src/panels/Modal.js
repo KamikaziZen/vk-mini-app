@@ -21,12 +21,10 @@ class Modal extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       activeModal: null,
       modalHistory: []
     };
-
     this.modalBack = () => {
       this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
     };
@@ -50,18 +48,14 @@ class Modal extends React.Component {
     });
   };
 
-  handleClick = () => {
-    console.log('значение this:', this);
-  }
-
   render() {
     return (
       <ModalRoot
-        id={this.props.id}
+        id='modal-1'
         activeModal={this.state.activeModal}
       >
         <ModalPage
-          id='modal-event-1'
+          id='modal-page-1'
           header={
             <ModalPageHeader
               left={IS_PLATFORM_ANDROID && <HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
@@ -73,11 +67,6 @@ class Modal extends React.Component {
           onClose={this.modalBack}
         >
         <List>
-          <Cell>
-            <InfoRow title="Место">
-              Казань Экспо
-            </InfoRow>
-          </Cell>
           <Cell>
             <InfoRow title="Когда?">
               12 января 13:42
@@ -106,9 +95,8 @@ class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  group_id: PropTypes.string.isRequired
+  title: PropTypes.string,
+  group_id: PropTypes.string
 };
 
 export default Modal;

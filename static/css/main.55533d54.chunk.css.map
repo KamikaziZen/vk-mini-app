@@ -1,0 +1,1 @@
+{"version":3,"sources":["Home.css"],"names":[],"mappings":"AAAA,MACE,YAAa,CACb,iBACF,CAEA,KACE,WACF,CAEA,kBACE,iBAAkB,CAClB,QAAS,CACT,MAAO,CACP,OACF","file":"main.55533d54.chunk.css","sourcesContent":[".main {\n  height: 100vh;\n  position: relative;\n}\n\n.map {\n  height: 100%;\n}\n\n.event-short-info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n}"]}

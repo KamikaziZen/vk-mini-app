@@ -77,36 +77,12 @@ const Home = ({ id, location, fetchedUser, events }) => {
               'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
             ]}
             style={{ color: "#fff" }}
-<<<<<<< HEAD
-          >{message} - 18:00</UsersStack>
+          >{message} - 18:10</UsersStack>
         </div>
       </Div>
     </div>
   );
 }
-=======
-          >
-            {token} - 17:08
-          </UsersStack>
-        </List>
-      </ModalPage>
-    </ModalRoot>
-   
-    {/* <Div className="event-short-info-wrapper">
-      <div className="event-info-content">
-        <UsersStack
-          photos={[
-            'https://sun9-19.userapi.com/c851232/v851232757/fb949/4rDdDHqGglQ.jpg?ava=1',
-            'https://sun9-3.userapi.com/c851536/v851536176/a9b1d/xdPOltpVQRI.jpg?ava=1',
-            'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
-          ]}
-          style={{ color: "#fff" }}
-        >{token} - 17:15</UsersStack>
-      </div>
-    </Div> */}
-  </div>
-);
->>>>>>> d9bfe01c5052dc3ac53f5a64158fb9d869474857
 
 Home.propTypes = {
   id: PropTypes.string.isRequired,

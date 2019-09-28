@@ -23,7 +23,7 @@ class Modal extends React.Component {
     super(props);
 
     this.state = {
-      activeModal: 'modal-page-1',
+      activeModal: null,
       modalHistory: []
     };
 
@@ -61,7 +61,7 @@ class Modal extends React.Component {
         activeModal={this.state.activeModal}
       >
         <ModalPage
-          id='modal-page-1'
+          id='modal-event-1'
           header={
             <ModalPageHeader
               left={IS_PLATFORM_ANDROID && <HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
@@ -83,6 +83,11 @@ class Modal extends React.Component {
               12 января 13:42
             </InfoRow>
           </Cell>
+          <Cell>
+            <InfoRow title="Чат группы">
+              { this.props.group_id }
+            </InfoRow>
+          </Cell>
           <UsersStack
             photos={[
               'https://sun9-19.userapi.com/c851232/v851232757/fb949/4rDdDHqGglQ.jpg?ava=1',
@@ -102,7 +107,8 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  group_id: PropTypes.string.isRequired
 };
 
 export default Modal;

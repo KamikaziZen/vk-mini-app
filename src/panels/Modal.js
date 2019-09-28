@@ -34,15 +34,15 @@ class Modal extends React.Component {
       this.props.onClose()
     };
 
-    console.log(props.token)
-    this.getGroupMembers(props.event.group_id)
+    console.log('TOOOKEN', props.token)
+    this.getGroupMembers(props.event.group_id, props.token)
   }
 
-  getGroupMembers () {
+  getGroupMembers (group_id, token) {
     let params = {
       v: '5.101',
-      access_token: this.props.token,
-      group_id: parseInt(this.props.event.group_id)
+      access_token: token,
+      group_id: parseInt(group_id)
     }
     connect
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 

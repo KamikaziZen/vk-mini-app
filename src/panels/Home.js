@@ -32,9 +32,9 @@ const Home = ({ id, location, fetchedUser, events }) => {
     joinGroup(group_id)
   }
 
-  const listEvents = events.map((e) =>
+  const listEvents = events.map((e, idx) =>
     <Placemark
-      key={'event-' + e.id}
+      key={'event-' + idx}
       geometry={e.coords}
       onClick={() => handleEventClick(e.id, e.name, e.group_id)}
     />

@@ -12,9 +12,8 @@ import Modal from './Modal';
 
 import './Home.css';
 
-const Home = ({ id, location, fetchedUser, events }) => {
+const Home = ({ id, location, fetchedUser, events, token }) => {
 
-  const [token, setToken] = useState('');
   const [currentEvent, setCurrentEvent] = useState(
     {
       title: null,
@@ -22,6 +21,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
       activeModal: null
     }
   );
+
 
   const joinGroup = (group_id) => {
     connect
@@ -34,34 +34,16 @@ const Home = ({ id, location, fetchedUser, events }) => {
       });
   }
 
-  // const getFriends = () => {
-    
-  // }
 
-  const getToken = () => {
-    connect
-      .sendPromise("VKWebAppGetAuthToken",
-        {
-          "app_id": 7149958,
-          "scope": "friends,groups"
-        }
-      )
-      .then(data=> {
-        console.log(data)
-        if ("error_data" in data) {
-          console.log('could not fetch token :(')
-        } else {
-          setToken(data.access_token)
-          console.log('fetched token', token)
-        }
-      })
-      .catch(error => {
-        console.log('error', error)
-      })
+  const getGroupMembers = (group_id) => {
+    let endpoint = 'https://api.vk.com/method/groups.getMembers'
+    // ?v=5.101&group_id=' + group_id + '&access_token=' + token)
+    // fetch(endpoint, {})
   }
 
   const handleEventClick = (title, group_id) => {
     // joinGroup(group_id)
+    getGroupMembers(group_id)
     console.log('clicked')
     setCurrentEvent(
       {

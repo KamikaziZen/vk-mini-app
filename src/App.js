@@ -68,7 +68,7 @@ const App = () => {
     }
     fetchData();
     fetchLocation();
-    // getToken();
+    getToken();
 
     setEvents([
       {
@@ -141,7 +141,11 @@ const App = () => {
 
   return (
     <View activePanel={activePanel} popout={popout}>
-      <Home id='home' location={location} fetchedUser={fetchedUser} events={events}/>
+      <Home id='home' 
+            location={location} 
+            fetchedUser={fetchedUser} 
+            events={events}
+            token={token}/>
     </View>
   );
 }

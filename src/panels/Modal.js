@@ -21,12 +21,10 @@ class Modal extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      activeModal: null,
+      activeModal: this.props.activeModal,
       modalHistory: []
     };
-
     this.modalBack = () => {
       this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
     };
@@ -61,7 +59,7 @@ class Modal extends React.Component {
         activeModal={this.state.activeModal}
       >
         <ModalPage
-          id='modal-event-1'
+          id='modal-page-1'
           header={
             <ModalPageHeader
               left={IS_PLATFORM_ANDROID && <HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
@@ -75,7 +73,7 @@ class Modal extends React.Component {
         <List>
           <Cell>
             <InfoRow title="Место">
-              Казань Экспо
+              {this.props.name}
             </InfoRow>
           </Cell>
           <Cell>
@@ -107,8 +105,8 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  group_id: PropTypes.string.isRequired
+  title: PropTypes.string,
+  group_id: PropTypes.string
 };
 
 export default Modal;

@@ -15,6 +15,13 @@ import './Home.css';
 const Home = ({ id, location, fetchedUser, events }) => {
 
   const [message, setMessage] = useState('ты ничего не нажал');
+  const [currentEvent, setCurrentEvent] = useState(
+    {
+      title: null,
+      group_id: null,
+      activeModal: null
+    }
+  );
 
   const joinGroup = (group_id) => {
     connect
@@ -27,16 +34,23 @@ const Home = ({ id, location, fetchedUser, events }) => {
       });
   }
 
-  const handleEventClick = (id, name, group_id) => {
-    setMessage('Вы записались на событие ' + name, '19:50')
+  const handleEventClick = (title, group_id) => {
+    setMessage('Вы записались на событие ' + title, '18:40')
     joinGroup(group_id)
+    setCurrentEvent(
+      {
+        title: title,
+        group_id: group_id,
+        activeModal: 'modal-type-1'
+      }
+    )
   }
 
   const listEvents = events.map((e, idx) =>
     <Placemark
       key={'event-' + idx}
       geometry={e.coords}
-      onClick={() => handleEventClick(e.id, e.name, e.group_id)}
+      onClick={() => handleEventClick(e.title, e.group_id)}
     />
   );
 
@@ -62,8 +76,9 @@ const Home = ({ id, location, fetchedUser, events }) => {
       </YMaps>
       <Modal
         id='modal-1'
-        title='Налить кофию.'
-        group_id='123'
+        title={currentEvent.title}
+        group_id={currentEvent.group_id}
+        activeModal={currentEvent.activeModal}
       />
     </div>
   );

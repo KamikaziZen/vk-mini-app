@@ -3,20 +3,9 @@ import connect from '@vkontakte/vk-connect';
 import PropTypes from 'prop-types';
 
 import {
-  UsersStack,
-  ModalRoot,
-  ModalPage,
-  ModalPageHeader,
-  HeaderButton,
-  List,
-  Cell,
-  InfoRow,
-  IS_PLATFORM_ANDROID,
-  IS_PLATFORM_IOS
+  Div,
+  UsersStack
 } from '@vkontakte/vkui';
-
-import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
-import Icon24Dismiss from '@vkontakte/icons/dist/24/dismiss';
 
 import {
   YMaps,
@@ -77,7 +66,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
               'https://sun9-21.userapi.com/c851416/v851416327/be840/bnUHAblZoBY.jpg?ava=1'
             ]}
             style={{ color: "#fff" }}
-          >{message} - 18:10</UsersStack>
+          >{message} - 18:00</UsersStack>
         </div>
       </Div>
     </div>

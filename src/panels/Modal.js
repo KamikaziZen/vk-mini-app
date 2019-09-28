@@ -22,7 +22,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeModal: this.props.activeModal,
+      activeModal: null,
       modalHistory: []
     };
     this.modalBack = () => {
@@ -48,10 +48,6 @@ class Modal extends React.Component {
     });
   };
 
-  handleClick = () => {
-    console.log('значение this:', this);
-  }
-
   render() {
     return (
       <ModalRoot
@@ -71,11 +67,6 @@ class Modal extends React.Component {
           onClose={this.modalBack}
         >
         <List>
-          <Cell>
-            <InfoRow title="Место">
-              {this.props.name}
-            </InfoRow>
-          </Cell>
           <Cell>
             <InfoRow title="Когда?">
               12 января 13:42

@@ -41,9 +41,10 @@ const Home = ({ id, location, fetchedUser, events }) => {
       {
         title: title,
         group_id: group_id,
-        activeModal: 'modal-type-1'
+        activeModal: 'modal-page-1'
       }
     )
+    console.log(currentEvent)
   }
 
   const listEvents = events.map((e, idx) =>
@@ -77,7 +78,6 @@ const Home = ({ id, location, fetchedUser, events }) => {
       <Modal
         title={currentEvent.title}
         group_id={currentEvent.group_id}
-        activeModal={currentEvent.activeModal}
       />
     </div>
   );

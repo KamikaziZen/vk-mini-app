@@ -54,8 +54,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   const getGroupMembers = (group_id) => {
     let params = {
       v: '5.101',
-      access_token: this.props.token,
-      group_id: parseInt(this.props.event.group_id)
+      access_token: token,
+      group_id: parseInt(group_id)
     }
     connect
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getMembers", 

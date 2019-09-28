@@ -68,7 +68,7 @@ const App = () => {
 
     setEvents([
       {
-        'coords': [55.821002, 49.1608481],
+        'coords': [55.766059, 49.1308083],
         'name': 'Помочь зооботсаду',
         'organizer': 'Казанский зооботанический сад',
         'start': '2019-10-05 09:00',
@@ -134,10 +134,6 @@ const App = () => {
     ]);
 
   }, []);
-
-  // const go = e => {
-  //   setActivePanel(e.currentTarget.dataset.to);
-  // };
 
   return (
     <View activePanel={activePanel} popout={popout}>

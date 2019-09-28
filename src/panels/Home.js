@@ -28,7 +28,7 @@ const Home = ({ id, location, fetchedUser, events }) => {
   }
 
   const handleEventClick = (id, name, group_id) => {
-    setMessage('Вы записались на событие ' + name, '19:40')
+    setMessage('Вы записались на событие ' + name, '19:50')
     joinGroup(group_id)
   }
 

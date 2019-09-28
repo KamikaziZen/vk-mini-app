@@ -46,9 +46,9 @@ const Home = ({ id, location, fetchedUser, events }) => {
     )
   }
 
-  const listEvents = events.map((e) =>
+  const listEvents = events.map((e, idx) =>
     <Placemark
-      key={'event-' + e.id}
+      key={'event-' + idx}
       geometry={e.coords}
       onClick={() => handleEventClick(e.title, e.group_id)}
     />

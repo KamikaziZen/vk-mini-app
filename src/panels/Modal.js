@@ -121,7 +121,7 @@ class Modal extends React.Component {
               {this.props.event.requirements}
             </InfoRow>
           </Cell> */}
-          <Cell before={<Avatar src={'../img/' + this.props.event.photo} />}>
+          <Cell before={<Avatar src={this.props.groupCover} />}>
             <InfoRow title="Организатор">
               {this.props.event.organizer}
             </InfoRow>

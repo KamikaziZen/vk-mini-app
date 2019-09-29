@@ -66,6 +66,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
                                              "params": params})
       .then(data => {
         console.log('cover:', data.response[0].photo_50)
+        setGroupCover(data.response[0].photo_50)
       })
       .catch(error => {
         console.log('error in get cover', error)
@@ -159,6 +160,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         groupCount={groupCount}
         onJoin={joinGroup}
         inGroup={inGroup}
+        groupCover={groupCover}
       />
     </div>
   );

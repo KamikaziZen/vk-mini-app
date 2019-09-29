@@ -40,6 +40,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   const [groupCount, setGroupCount] = useState(0)
   const [inGroup, setInGroup] = useState(false)
   const [groupCover, setGroupCover] = useState('')
+  const [userIcons, setUserIcons] = useState([])
 
 
   const joinGroup = () => {
@@ -87,6 +88,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       .then(data => {
         console.log('response:', data)
         console.log('cover:', data.response.map((u)=>(u.photo_50)))
+        setUserIcons(data.response.map((u)=>(u.photo_50)))
       })
       .catch(error => {
         console.log('error in get cover', error)
@@ -182,6 +184,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         onJoin={joinGroup}
         inGroup={inGroup}
         groupCover={groupCover}
+        userIcons={userIcons}
       />
     </div>
   );

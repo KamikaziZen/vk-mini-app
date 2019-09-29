@@ -93,7 +93,7 @@ class Modal extends React.Component {
               {
                 this.props.inGroup
                 ? <Button size="xl" level="secondary" disabled>Уже участвую!</Button>
-                : <Button size="xl" onClick={this.props.joinAndClose}>Готов помочь!</Button>
+                : <Button size="xl" onClick={this.joinAndClose}>Готов помочь!</Button>
               }
             </Div>
           </Cell>

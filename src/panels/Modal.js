@@ -55,7 +55,7 @@ class Modal extends React.Component {
   };
 
   joinAndClose() {
-    thiS.props.onClose()
+    this.props.onClose()
     this.props.onJoin()
   }
 

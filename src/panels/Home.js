@@ -40,7 +40,19 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   const [groupCount, setGroupCount] = useState(0)
   const [inGroup, setInGroup] = useState(false)
   const [groupCover, setGroupCover] = useState('')
+  const [userIcons, setUserIcons] = useState([])
 
+
+  const allowGroup = () => {
+    connect
+      .sendPromise("VKWebAppAllowMessagesFromGroup", {"group_id": parseInt(currentEvent.event.group_id)})
+      .then(data => {
+        console.log('data', data)
+      })
+      .catch(error => {
+        console.log('error in allow group', error)
+      });
+  }
 
   const joinGroup = () => {
     connect
@@ -78,6 +90,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       v: '5.101',
       access_token: token,
       user_ids: user_ids,
+      fields: 'photo_50'
     }
 
     connect
@@ -85,7 +98,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
                                              "params": params})
       .then(data => {
         console.log('response:', data)
-        console.log('cover:', data.response.photo_50)
+        console.log('cover:', data.response.map((u)=>(u.photo_50)))
+        setUserIcons(data.response.map((u)=>(u.photo_50)))
       })
       .catch(error => {
         console.log('error in get cover', error)
@@ -181,6 +195,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         onJoin={joinGroup}
         inGroup={inGroup}
         groupCover={groupCover}
+        userIcons={userIcons}
+        onAllow={allowGroup}
       />
     </div>
   );

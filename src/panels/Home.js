@@ -45,7 +45,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
 
   const allowGroup = () => {
     connect
-      .sendPromise("VKWebAppAllowMessagesFromGrou", {"group_id": parseInt(currentEvent.event.group_id)})
+      .sendPromise("VKWebAppAllowMessagesFromGroup", {"group_id": parseInt(currentEvent.event.group_id)})
       .then(data => {
         console.log('data', data)
       })

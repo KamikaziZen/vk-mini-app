@@ -123,7 +123,7 @@ class Modal extends React.Component {
                 <HorizontalScroll>
                   <div style={{ display: 'flex' }}>
                     {this.props.event.requirements.map((req) => 
-                      <TabsItem key={req.toString()} selected={true}>{req}</TabsItem>
+                      <TabsItem key={req.toString()} >{req}</TabsItem>
                     )}
                   </div>
                 </HorizontalScroll>

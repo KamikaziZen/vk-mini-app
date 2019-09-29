@@ -78,6 +78,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       v: '5.101',
       access_token: token,
       user_ids: user_ids,
+      fields: 'photo_50'
     }
 
     connect
@@ -85,7 +86,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
                                              "params": params})
       .then(data => {
         console.log('response:', data)
-        console.log('cover:', data.response.photo_50)
+        console.log('cover:', data.response.map((u)=>(u.photo_50)))
       })
       .catch(error => {
         console.log('error in get cover', error)

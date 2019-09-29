@@ -91,7 +91,7 @@ class Modal extends React.Component {
           </Cell>
           <Cell multiline>
             <InfoRow title="Что там делать?">
-              {this.props.event.aim}
+              {this.props.event.description}
             </InfoRow>
           </Cell>
           <Cell>
@@ -121,9 +121,11 @@ class Modal extends React.Component {
             <InfoRow title="Нужные навыки">
               <Tabs type="buttons">
                 <HorizontalScroll>
+                  <div style={{ display: 'flex' }}>
                     {this.props.event.requirements.map((req) => 
                       <TabsItem key={req.toString()} selected={true}>{req}</TabsItem>
                     )}
+                  </div>
                 </HorizontalScroll>
               </Tabs>
             </InfoRow>

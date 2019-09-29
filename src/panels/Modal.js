@@ -34,6 +34,11 @@ class Modal extends React.Component {
       console.log('closing!')
       this.props.onClose()
     };
+
+    this.joinAndClose = () => {
+      this.props.onClose()
+      this.props.onJoin()
+    }
   }
 
   setActiveModal(activeModal) {
@@ -53,11 +58,6 @@ class Modal extends React.Component {
       modalHistory
     });
   };
-
-  joinAndClose() {
-    this.props.onClose()
-    this.props.onJoin()
-  }
 
   render() {
     return (

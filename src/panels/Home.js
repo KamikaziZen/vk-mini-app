@@ -43,6 +43,17 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   const [userIcons, setUserIcons] = useState([])
 
 
+  const allowGroup = () => {
+    connect
+      .sendPromise("VKWebAppAllowMessagesFromGrou", {"group_id": parseInt(currentEvent.event.group_id)})
+      .then(data => {
+        console.log('data', data)
+      })
+      .catch(error => {
+        console.log('error in allow group', error)
+      });
+  }
+
   const joinGroup = () => {
     connect
       .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(currentEvent.event.group_id)})
@@ -185,6 +196,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         inGroup={inGroup}
         groupCover={groupCover}
         userIcons={userIcons}
+        onAllow={onAllow}
       />
     </div>
   );

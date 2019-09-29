@@ -15,6 +15,9 @@ import {
   InfoRow,
   Progress,
   Avatar,
+  Tabs,
+  TabsItem,
+  HorizontalScroll,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
@@ -85,7 +88,7 @@ class Modal extends React.Component {
               {this.props.event.start} - {this.props.event.end}
             </InfoRow>
           </Cell>
-          <Cell>
+          <Cell multiline>
             <InfoRow title="Что там делать?">
               {this.props.event.aim}
             </InfoRow>
@@ -106,7 +109,7 @@ class Modal extends React.Component {
                 'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
               ]}
               size="m"
-            >Уже {this.props.groupCount} участников</UsersStack>
+            >Идут еще {this.props.groupCount} человек</UsersStack>
           </Cell>
           <Cell>
             <InfoRow title={'Набрано участников: ' + this.props.groupCount + ' из ' + this.props.event.count_end}>
@@ -116,11 +119,17 @@ class Modal extends React.Component {
               />
             </InfoRow>
           </Cell>
-          {/* <Cell>
+          <Cell>
             <InfoRow title="Нужные навыки">
-              {this.props.event.requirements}
+              <Tabs type="buttons">
+                <HorizontalScroll>
+                    {this.props.event.requirements.map((req) => 
+                      <TabsItem key={req.toString()} selected={true}>{req}</TabsItem>
+                    )}
+                </HorizontalScroll>
+              </Tabs>
             </InfoRow>
-          </Cell> */}
+          </Cell>
           <Cell before={<Avatar src={this.props.groupCover} />}>
             <InfoRow title="Организатор">
               {this.props.event.organizer}

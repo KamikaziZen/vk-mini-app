@@ -196,7 +196,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         inGroup={inGroup}
         groupCover={groupCover}
         userIcons={userIcons}
-        onAllow={onAllow}
+        onAllow={allowGroup}
       />
     </div>
   );

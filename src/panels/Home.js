@@ -73,6 +73,25 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       });
   }
 
+  const getUsersPhotos = (user_ids) => {
+    let params = {
+      v: '5.101',
+      access_token: token,
+      user_ids: user_ids,
+    }
+
+    connect
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "users.get", 
+                                             "params": params})
+      .then(data => {
+        console.log('response:', data)
+        console.log('cover:', data.response.photo_50)
+      })
+      .catch(error => {
+        console.log('error in get cover', error)
+      });
+  }
+
   const getGroupMembers = (group_id) => {
     let params = {
       v: '5.101',
@@ -93,6 +112,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
           setInGroup(false)
         }
         setGroupCount(data.response.count)
+        getUsersPhotos(data.response.items)
       })
       .catch(error => {
         console.log('error in get group members', error)

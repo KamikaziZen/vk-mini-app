@@ -65,7 +65,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getById", 
                                              "params": params})
       .then(data => {
-        console.log('cover:', data.response.photo_50)
+        console.log('cover:', data.response[0].photo_50)
       })
       .catch(error => {
         console.log('error in get cover', error)

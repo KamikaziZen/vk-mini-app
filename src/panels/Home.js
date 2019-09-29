@@ -39,6 +39,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   );
   const [groupCount, setGroupCount] = useState(0)
   const [inGroup, setInGroup] = useState(false)
+  const [groupCover, setGroupCover] = useState('')
 
 
   const joinGroup = () => {
@@ -49,6 +50,25 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
       })
       .catch(error => {
         console.log('error IN JOIN GROUP', error)
+      });
+  }
+
+  const getCover = (group_id) => {
+    let params = {
+      v: '5.101',
+      access_token: token,
+      group_id: parseInt(group_id),
+      fields: "cover"
+    }
+
+    connect
+      .sendPromise("VKWebAppCallAPIMethod", {"method": "groups.getById", 
+                                             "params": params})
+      .then(data => {
+        console.log('cover:', data.response.photo_50)
+      })
+      .catch(error => {
+        console.log('error in get cover', error)
       });
   }
 
@@ -82,6 +102,7 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   const handleEventClick = (event) => {
     // joinGroup(group_id)
     getGroupMembers(event.group_id)
+    getCover(event.group_id)
     console.log('clicked')
     setCurrentEvent(
       {

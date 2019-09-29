@@ -13,6 +13,8 @@ import {
   Div,
   Button,
   InfoRow,
+  Progress,
+  Avatar,
   IS_PLATFORM_ANDROID,
   IS_PLATFORM_IOS
 } from '@vkontakte/vkui';
@@ -105,6 +107,24 @@ class Modal extends React.Component {
               ]}
               size="m"
             >{this.props.groupCount} </UsersStack>
+          </Cell>
+          <Cell>
+            <InfoRow title={'Набрано участников: ' + this.props.groupCount + ' из ' + this.props.event.count_end}>
+              <Progress 
+                value={Math.floor(this.props.groupCount * 100 / this.props.event.count_end)}
+                className="progress-bar"
+              />
+            </InfoRow>
+          </Cell>
+          {/* <Cell>
+            <InfoRow title="Нужные навыки">
+              {this.props.event.requirements}
+            </InfoRow>
+          </Cell> */}
+          <Cell before={<Avatar src={'../img/' + this.props.event.photo} />}>
+            <InfoRow title="Организатор">
+              {this.props.event.organizer}
+            </InfoRow>
           </Cell>
         </List>
       </ModalPage>

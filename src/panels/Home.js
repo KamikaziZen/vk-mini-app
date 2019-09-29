@@ -3,6 +3,13 @@ import connect from '@vkontakte/vk-connect';
 import PropTypes from 'prop-types';
 
 import {
+  Snackbar,
+  Avatar
+} from '@vkontakte/vkui';
+
+import Icon16Done from '@vkontakte/icons/dist/16/done';
+
+import {
   YMaps,
   Map,
   Placemark
@@ -42,6 +49,25 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   const [groupCover, setGroupCover] = useState('')
   const [userIcons, setUserIcons] = useState([])
 
+  const blueBackground = {
+    backgroundColor: 'var(--accent)'
+  };
+
+  const [snackbarIsActive, setSnackbarIsActive] = useState(false)
+  const [snackbar, setSnackbar] = useState(null)
+
+  const openSnackbar = () => {
+    setSnackbarIsActive(true)
+    setSnackbar(
+      <Snackbar
+        layout="vertical"
+        onClose={() => {setSnackbarIsActive(false); setSnackbar(null)}}
+        before={<Avatar size={24} style={blueBackground}><Icon16Done fill="#fff" width={14} height={14} /></Avatar>}
+      >
+        Вы успешно присоединились к сообществу!
+      </Snackbar>
+    )
+  }
 
   const allowGroup = () => {
     connect
@@ -55,10 +81,12 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
   }
 
   const joinGroup = () => {
+    
     connect
       .sendPromise("VKWebAppJoinGroup", {"group_id": parseInt(currentEvent.event.group_id)})
       .then(data => {
         console.log('data', data)
+        openSnackbar()
       })
       .catch(error => {
         console.log('error IN JOIN GROUP', error)
@@ -198,6 +226,8 @@ const Home = ({ id, location, fetchedUser, events, token }) => {
         userIcons={userIcons}
         onAllow={allowGroup}
       />
+
+      {snackbar}
     </div>
   );
 }

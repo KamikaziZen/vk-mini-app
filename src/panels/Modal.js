@@ -105,10 +105,7 @@ class Modal extends React.Component {
           </Cell>
           <Cell>
             <UsersStack
-              photos={[
-                'https://sun9-1.userapi.com/c850624/v850624456/9f63e/c2_IbBit7I8.jpg?ava=1',
-                'https://sun9-6.userapi.com/c851528/v851528416/e0360/1UfQ8aSIGVA.jpg?ava=1'
-              ]}
+              photos={this.props.icons}
               size="m"
             >Идут еще {this.props.groupCount} человек</UsersStack>
           </Cell>

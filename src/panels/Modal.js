@@ -105,7 +105,7 @@ class Modal extends React.Component {
           </Cell>
           <Cell>
             <UsersStack
-              photos={this.props.icons}
+              photos={this.props.userIcons}
               size="m"
             >Идут еще {this.props.groupCount} человек</UsersStack>
           </Cell>
